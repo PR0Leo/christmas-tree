@@ -1,0 +1,43 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Users\leona\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DSDKCONFIG='d:\projects\christmas-tree\espidf-debug-test\sdkconfig' -DCCACHE_ENABLE=1 D:\projects\christmas-tree\espidf-debug-test
+CMake Error at C:/Users/leona/esp/v5.5/esp-idf/tools/cmake/build.cmake:629 (message):
+  Traceback (most recent call last):
+
+    File "<frozen runpy>", line 198, in _run_module_as_main
+    File "<frozen runpy>", line 88, in _run_code
+    File "C:\Users\leona\.espressif\python_env\idf5.5_py3.11_env\Lib\site-packages\idf_component_manager\prepare_components\__main__.py", line 6, in <module>
+      main()
+    File "C:\Users\leona\.espressif\python_env\idf5.5_py3.11_env\Lib\site-packages\idf_component_manager\prepare_components\prepare.py", line 165, in main
+      args.func(args)
+    File "C:\Users\leona\.espressif\python_env\idf5.5_py3.11_env\Lib\site-packages\idf_component_manager\prepare_components\prepare.py", line 34, in prepare_dep_dirs
+      ).prepare_dep_dirs(
+        ^^^^^^^^^^^^^^^^^
+    File "C:\Users\leona\.espressif\python_env\idf5.5_py3.11_env\Lib\site-packages\idf_component_manager\core.py", line 112, in wrapper
+      return func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\leona\.espressif\python_env\idf5.5_py3.11_env\Lib\site-packages\idf_component_manager\core.py", line 757, in prepare_dep_dirs
+      downloaded_components = download_project_dependencies(
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\leona\.espressif\python_env\idf5.5_py3.11_env\Lib\site-packages\idf_component_manager\dependencies.py", line 525, in download_project_dependencies
+      download_path = fetcher.download()
+                      ^^^^^^^^^^^^^^^^^^
+    File "C:\Users\leona\.espressif\python_env\idf5.5_py3.11_env\Lib\site-packages\idf_component_tools\sources\fetcher.py", line 29, in download
+      download_path = self.source.download(self.component, self.component_path.as_posix())
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\leona\.espressif\python_env\idf5.5_py3.11_env\Lib\site-packages\idf_component_tools\sources\web_service.py", line 322, in download
+      unpack_archive(archive_path, component_cache_path)
+    File "C:\Users\leona\.espressif\python_env\idf5.5_py3.11_env\Lib\site-packages\idf_component_tools\archive_tools.py", line 106, in unpack_archive
+      prepare_empty_directory(destination_directory)
+    File "C:\Users\leona\.espressif\python_env\idf5.5_py3.11_env\Lib\site-packages\idf_component_tools\file_tools.py", line 167, in prepare_empty_directory
+      directory.mkdir(parents=True)
+    File "pathlib.py", line 1116, in mkdir
+
+  FileExistsError: [WinError 183] Cannot create a file when that file already
+  exists:
+  'C:\\Users\\leona\\AppData\\Local\\Espressif\\ComponentManager\\Cache\\service_d92d8f1e\\espressif__led_strip_3.0.1~1_223998f1'
+
+
+Call Stack (most recent call first):
+  C:/Users/leona/esp/v5.5/esp-idf/tools/cmake/project.cmake:740 (idf_build_process)
+  CMakeLists.txt:8 (project)
+
+

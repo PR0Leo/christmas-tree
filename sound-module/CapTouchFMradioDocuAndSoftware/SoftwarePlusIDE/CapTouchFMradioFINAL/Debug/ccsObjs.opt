@@ -1,0 +1,1 @@
+"./CTS_HAL.obj" "./CTS_Layer.obj" "./CapTouchFMradioMAIN.obj" "./MSP430G2553_USCI_I2C.obj" "./Si4735.obj" "./structure.obj" "../lnk_msp430g2553.cmd" -llibc.a 

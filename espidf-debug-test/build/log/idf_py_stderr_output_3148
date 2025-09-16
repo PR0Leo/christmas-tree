@@ -1,0 +1,20 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Users\leona\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DIDF_TARGET=esp32c6 -DCCACHE_ENABLE=0 D:\projects\christmas-tree\espidf-debug-test
+CMake Error at C:/Users/leona/.espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:139 (file):
+  file STRINGS file
+  "D:/projects/christmas-tree/espidf-debug-test/build/CMakeFiles/3.30.2/CMakeDetermineCompilerABI_C.bin"
+  cannot be read.
+Call Stack (most recent call first):
+  C:/Users/leona/.espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)
+  C:/Users/leona/esp/v5.5/esp-idf/tools/cmake/project.cmake:589 (__project)
+  CMakeLists.txt:8 (project)
+
+
+CMake Error: Could not open file for write in copy operation D:/projects/christmas-tree/espidf-debug-test/build/CMakeFiles/3.30.2/CMakeCXXCompiler.cmake.tmp
+CMake Error: : System Error: Permission denied
+CMake Error at C:/Users/leona/.espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake:86 (configure_file):
+  configure_file Problem configuring file
+Call Stack (most recent call first):
+  C:/Users/leona/esp/v5.5/esp-idf/tools/cmake/project.cmake:589 (__project)
+  CMakeLists.txt:8 (project)
+
+

@@ -1,0 +1,33 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Users\leona\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DSDKCONFIG='d:\projects\christmas-tree\espidf-debug-test\sdkconfig' -DCCACHE_ENABLE=1 D:\projects\christmas-tree\espidf-debug-test
+-- Found Git: C:/Users/leona/.espressif/tools/idf-git/2.39.2/cmd/git.exe (found version "2.39.2.windows.1")
+-- Minimal build - ON
+-- ccache will be used for faster recompilation
+-- The C compiler identification is GNU 14.2.0
+-- The CXX compiler identification is GNU 14.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: C:/Users/leona/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Users/leona/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Users/leona/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/riscv32-esp-elf-g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- git rev-parse returned 'fatal: detected dubious ownership in repository at 'D:/projects/christmas-tree'
+'D:/projects/christmas-tree' is owned by:
+	'S-1-5-32-544'
+but the current user is:
+	'S-1-5-21-736712930-1269098515-1445899427-1001'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory D:/projects/christmas-tree'
+-- Could not use 'git describe' to determine PROJECT_VER.
+-- Building ESP-IDF components for target esp32c6
+NOTICE: Dependencies lock doesn't exist, solving dependencies.
+..NOTICE: Updating lock file at D:\projects\christmas-tree\espidf-debug-test\dependencies.lock
+NOTICE: Processing 2 dependencies:
+NOTICE: [1/2] espressif/led_strip (3.0.1~1)
+-- Configuring incomplete, errors occurred!
