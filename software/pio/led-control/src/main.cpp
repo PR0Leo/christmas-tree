@@ -37,22 +37,22 @@ void loop()
 {
 //  tempBasedLedFaded(tempC);
 //  tempBasedLed(tempC);
-//  randomChristmasBalls(10, 30); 
-//  specialFadeEffect(5, 100);
-  if (!digitalRead(LED_ON_OFF_BUTTON) == ledsOn){
-    for (int i = 0; i < strip.numPixels(); i++)
-    {
-      strip.setPixelColor(i, strip.Color(255, 255, 255)); // Rot, gruen, blau = max white
-    }
-    ledsOn = 1;
-  } else {
-    for (int i = 0; i < strip.numPixels(); i++)
-    {
-      strip.setPixelColor(i, strip.Color(0, 0, 0)); // Rot, gruen, blau = max white
-    }
-    ledsOn = 0;
-  }
-  strip.show(); // Update the strip
+  randomChristmasBalls(10, 30); 
+//   specialFadeEffect(5, 100);
+//   if (!digitalRead(LED_ON_OFF_BUTTON) == ledsOn){
+//     for (int i = 0; i < strip.numPixels(); i++)
+//     {
+//       strip.setPixelColor(i, strip.Color(255, 255, 255)); // Rot, gruen, blau = max white
+//     }
+//     ledsOn = 1;
+//   } else {
+//     for (int i = 0; i < strip.numPixels(); i++)
+//     {
+//       strip.setPixelColor(i, strip.Color(0, 0, 0)); // Rot, gruen, blau = max white
+//     }
+//     ledsOn = 0;
+//   }
+//   strip.show(); // Update the strip
 }
 
 void setBreak()
