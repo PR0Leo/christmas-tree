@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------
 // Include Libs
 // -----------------------------------------------------------------------------
-#include <Arduino.h> // for Arudino syntax
+#include <Arduino.h>             // for Arudino syntax
 #include <SoftwareSerial.h>      // for serial communication to amplifier
 #include <DFRobotDFPlayerMini.h> // for amplifier commands
 #include <Adafruit_NeoPixel.h>   // for LED commands
@@ -27,8 +27,8 @@
 #define INC_VOLUME_BUTTON 5       // = S4
 #define PREVIOUS_BUTTON 6         // = S5
 #define NEXT_BUTTON 7             // = S6
-#define NUMPIXELS 18        // Amount of Neopixels, 51 possible
-#define BRIGHTNESSLEVEL 0.1 // Brightnes of LEDs: 0 = OFF, 1 = MAX
+#define NUMPIXELS 18              // Amount of Neopixels, 51 possible
+#define BRIGHTNESSLEVEL 0.1       // Brightnes of LEDs: 0 = OFF, 1 = MAX
 // -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
@@ -108,31 +108,39 @@ void loop()
   // ---------------------------------------------------------------------------
   //  Check if any button is pressed
   // ---------------------------------------------------------------------------
-  if (digitalRead(PAUSE_PLAY_BUTTON)== LOW) {
-    if (isPlaying) {
+  if (digitalRead(PAUSE_PLAY_BUTTON) == LOW)
+  {
+    if (isPlaying)
+    {
       myDFPlayer.pause();
       isPlaying = false;
     }
-    else {
+    else
+    {
       myDFPlayer.start();
       isPlaying = true;
     }
   }
-  if (digitalRead(NEXT_BUTTON) == LOW) {
+  if (digitalRead(NEXT_BUTTON) == LOW)
+  {
     myDFPlayer.next(); // plays next song if next-button is pressed low
   }
-  if (digitalRead(PREVIOUS_BUTTON) == LOW) {
+  if (digitalRead(PREVIOUS_BUTTON) == LOW)
+  {
     myDFPlayer.previous();
   }
-  if (digitalRead(DEC_VOLUME_BUTTON) == LOW) {
+  if (digitalRead(DEC_VOLUME_BUTTON) == LOW)
+  {
     myDFPlayer.volumeDown();
     myDFPlayer.volumeDown();
   }
-  if (digitalRead(INC_VOLUME_BUTTON) == LOW) {
+  if (digitalRead(INC_VOLUME_BUTTON) == LOW)
+  {
     myDFPlayer.volumeUp();
     myDFPlayer.volumeUp();
   }
-  if (digitalRead(LED_SWITCH_STATE_BUTTON) == LOW){
+  if (digitalRead(LED_SWITCH_STATE_BUTTON) == LOW)
+  {
     ledMode++;
     if (ledMode == 7)
     { // allows for 6 modes. 7 will be 1 again.
@@ -171,9 +179,11 @@ void loop()
     break;
   case 3:
     tempBasedLedFaded(tempC, BRIGHTNESSLEVEL);
+    delay(500);
     break;
   case 4:
     tempBasedLed(tempC, BRIGHTNESSLEVEL);
+    delay(500);
     break;
 
   // -------------------------------------------------------------------------
@@ -194,6 +204,7 @@ void loop()
     }
 
     strip.show();
+    delay(500);
     // After all colors have been set, the strip will be updated now.
     break;
     // -------------------------------------------------------------------------
@@ -205,8 +216,8 @@ void loop()
       // Red = 0, Green = 0, Blue = 0 => OFF
     }
     strip.show();
+    delay(500);
     break;
-  delay(1000);
   }
   // ---------------------------------------------------------------------------
 }

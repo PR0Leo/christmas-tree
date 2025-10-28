@@ -7,6 +7,8 @@ extern Adafruit_NeoPixel strip;
 void specialFadeEffect(int stepSize, float brightnessLevel);
 void addAdjustedDelay(int r, int g, int b, int maxBrightness);
 
+void tempBasedLedFaded(float tempC, float brightnessLevel);
+void tempBasedLed(float tempC, float brightnessLevel);
 void randomChristmasBalls(int speed, float brightnessLevel);
 void setPixelColorRed(int pixelNumber, int maxBrightness);
 void setPixelColorGreen(int pixelNumber, int maxBrightness);

@@ -160,6 +160,90 @@ void randomChristmasBalls(int speed, float brightnessLevel)
     delay(3000);
 }
 
+void tempBasedLedFaded(float tempC, float brightnessLevel)
+{
+  int red, green, blue, r, g, b;
+  float tempRange = tempC - 25; // my range is from 0 - 10 for 25C to 35C.
+  if (tempRange >= 10)
+  {
+    tempRange = 10;
+  }
+  if (tempRange <= 0){
+    tempRange = 0;
+  }
+  float floaty = 512 * tempRange / 10.0;
+  int colorRange = floaty;
+
+  if (colorRange < 256)
+  {
+    red = colorRange;
+    green = 255;
+    blue = 0;
+  }
+  else if (colorRange < 512)
+  {
+    red = 255;
+    green = 512 - colorRange;
+    blue = 0;
+  }
+  else
+  {
+    red = 0;
+    green = 0;
+    blue = 0;
+  }
+
+  r = 1.0 * red * brightnessLevel;
+  g = 1.0 * green * brightnessLevel;
+  b = 1.0 * blue * brightnessLevel;
+
+  for (int i = 0; i < strip.numPixels(); i++)
+  {
+    strip.setPixelColor(i, strip.Color(r, g, b)); // Rot, gruen, blau
+  }
+  noInterrupts();
+  strip.show();
+  interrupts();
+
+  //  Serial.println("TempRange: " + String(tempRange));
+  //  Serial.println("ColorRange: " + String(colorRange));
+  //  Serial.println("b = " + String(b) + "blue = " + String(blue));
+}
+
+void tempBasedLed(float tempC, float brightnessLevel)
+{
+  if (tempC <= 28)
+  {
+    for (int i = 0; i < strip.numPixels(); i++)
+    {
+      strip.setPixelColor(i, strip.Color(0, 255 * brightnessLevel, 0)); // How t mix blue?
+    }
+  noInterrupts();
+  strip.show();
+  interrupts();
+  }
+  else if (tempC <= 33)
+  {
+    for (int i = 0; i < strip.numPixels(); i++)
+    {
+      strip.setPixelColor(i, strip.Color(255 * brightnessLevel, 200 * brightnessLevel, 0)); // How to mix orange?
+    }
+    noInterrupts();
+    strip.show();
+    interrupts();
+  }
+  else if (tempC <= 35)
+  {
+    for (int i = 0; i < strip.numPixels(); i++)
+    {
+      strip.setPixelColor(i, strip.Color(255 * brightnessLevel, 0, 0)); // How to mix red?
+    }
+    noInterrupts();
+    strip.show();
+    interrupts();
+  }
+}
+
 void setPixelColorRed(int pixelNumber, int maxBrightness)
 {
     strip.setPixelColor(pixelNumber, strip.Color(maxBrightness, 0, 0));
@@ -198,75 +282,4 @@ void setPixelColorCyan(int pixelNumber, int maxBrightness)
 void setPixelColorYellow(int pixelNumber, int maxBrightness)
 {
     strip.setPixelColor(pixelNumber, strip.Color(maxBrightness, maxBrightness / 1.2, 0));
-}
-
-ColorState colorState = {0, 0, 0, 0, 0};
-
-void specialFadeEffectNonBlocking(int stepSize, float brightnessLevel)
-{
-    int maxBrightness = brightnessLevel * 255;
-    unsigned long now = millis();
-
-    // Only update every 10ms
-    if (now - colorState.lastUpdate < 10)
-        return;
-    colorState.lastUpdate = now;
-
-    switch (colorState.phase)
-    {
-    case 0: // r up
-        colorState.r += stepSize;
-        if (colorState.r >= maxBrightness)
-        {
-            colorState.r = maxBrightness;
-            colorState.phase++;
-        }
-        break;
-    case 1: // b down
-        colorState.b -= stepSize;
-        if (colorState.b <= 0)
-        {
-            colorState.b = 0;
-            colorState.phase++;
-        }
-        break;
-    case 2: // g up
-        colorState.g += stepSize;
-        if (colorState.g >= maxBrightness)
-        {
-            colorState.g = maxBrightness;
-            colorState.phase++;
-        }
-        break;
-    case 3: // r down
-        colorState.r -= stepSize;
-        if (colorState.r <= 0)
-        {
-            colorState.r = 0;
-            colorState.phase++;
-        }
-        break;
-    case 4: // b up
-        colorState.b += stepSize;
-        if (colorState.b >= maxBrightness)
-        {
-            colorState.b = maxBrightness;
-            colorState.phase++;
-        }
-        break;
-    case 5: // g down
-        colorState.g -= stepSize;
-        if (colorState.g <= 0)
-        {
-            colorState.g = 0;
-            colorState.phase = 0; // restart
-        }
-        break;
-    }
-
-    for (int i = 0; i < strip.numPixels(); i++)
-    {
-        strip.setPixelColor(i, strip.Color(colorState.r, colorState.g, colorState.b));
-    }
-    strip.show();
 }

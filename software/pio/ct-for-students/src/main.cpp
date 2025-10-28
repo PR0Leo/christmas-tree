@@ -6,10 +6,8 @@
 #include <DFRobotDFPlayerMini.h> // for amplifier commands
 #include <Adafruit_NeoPixel.h>   // for LED commands
 #include "light_effects.h"       // self written lib for special led effects
-#include "ntc_light_effects.h"   // self written lib for ntc based led effects
 // #include "avr8-stub.h"
 // #include "app_api.h"
-//  #include <HardwareSerial.h>
 
 // -----------------------------------------------------------------------------
 // Define: Pins as in Stromlaufplan, LED Brightness, Amount of LEDs
@@ -110,29 +108,6 @@ void loop()
   // ---------------------------------------------------------------------------
   //  Check if any button is pressed
   // ---------------------------------------------------------------------------
-  // if (shouldplay)
-  // {
-  //   if (isPlaying)
-  //   {
-  //   }
-  //   else
-  //   {
-  //     myDFPlayer.start(); // If interrupt changes shouldPlay state it'Ll
-  //     // play the song if it wasn't playing
-  //     isPlaying = 1; // Turns of Play State after stopping music
-  //   }
-  // }
-  // else
-  // {
-  //   if (isPlaying)
-  //   {
-  //     myDFPlayer.pause();
-  //     isPlaying = 0;
-  //   }
-  //   else
-  //   {
-  //   }
-  // }
   if (digitalRead(NEXT_BUTTON) == LOW)
   {
     myDFPlayer.next(); // plays next song if next-button is pressed low
@@ -163,7 +138,7 @@ void loop()
   // calculates T in Kelvin by taking voltage level and dividing it by 1024
   // resolution. Formular?
   tempK = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * tempK * tempK)) * tempK); //  Temp Kelvin
-  float tempC = tempK - 273.15;                                                          // Convert Kelvin to Celcius
+  float tempC = tempK - 273.15;                // Convert Kelvin to Celcius
   // Serial.println("Analog Value: " + String(tempReading)); // This is OK
   //  Serial.println("Temperature in Celsius: " + String(tempC, 2));
   // ---------------------------------------------------------------------------
@@ -179,13 +154,10 @@ void loop()
     // Todo: how to jump to lib and read param and description.
     break;
   case 2:
-    specialFadeEffect(1, BRIGHTNESSLEVEL);
-    break;
-  case 3:
     tempBasedLedFaded(tempC, BRIGHTNESSLEVEL);
     delay(500);
     break;
-  case 4:
+  case 3:
     tempBasedLed(tempC, BRIGHTNESSLEVEL);
     delay(500);
     break;
@@ -193,7 +165,7 @@ void loop()
   // -------------------------------------------------------------------------
   // Example
   // -------------------------------------------------------------------------
-  case 5:
+  case 4:
 
     // Following code shows example of how you use neopixel lib to write LEDs
 
@@ -202,52 +174,37 @@ void loop()
     // => 18 leds. All will be set according to the following code.
 
     {
-      strip.setPixelColor(i, strip.Color(255, 255, 255));
-      // sets color for one LED(pixel) i which consists of 3 diods(RGB).
-      // Eg.Red = 255, Green = 255, Blue = 255 => White_max.
+      strip.setPixelColor(i, strip.Color(0, 0, 0));
+      // Red = 0, Green = 0, Blue = 0 => OFF
     }
 
     strip.show();
     delay(500);
     // After all colors have been set, the strip will be updated now.
     break;
-    // -------------------------------------------------------------------------
-
-  case 6:
-    for (int i = 0; i < strip.numPixels(); i++)
-    {
-      strip.setPixelColor(i, strip.Color(0, 0, 0));
-      // Red = 0, Green = 0, Blue = 0 => OFF
-    }
-    strip.show();
-    delay(500);
-    break;
   }
   // ---------------------------------------------------------------------------
 }
 
 // -----------------------------------------------------------------------------
-// Interrupt Functions
+// Interrupt Functions: Turning off music instantly, switching LED_MODE to 100%
 // -----------------------------------------------------------------------------
 void switchledMode()
 {
   ledMode++;
-  if (ledMode == 7)
-  { // allows for 6 modes. 7 will be 1 again.
+  if (ledMode == 5)
+  { // allows for 4 modes. 5 will be 1 again.
     ledMode = 1;
   }
 }
 
 void pausePlay()
 {
-  // shouldPlay = !shouldPlay;
-  if (isPlaying)
-  {
+  if (isPlaying){
     myDFPlayer.pause();
     isPlaying = false;
   }
-  else
-  {
+  else{
     myDFPlayer.start();
     isPlaying = true;
   }
