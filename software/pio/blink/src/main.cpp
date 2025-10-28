@@ -5,9 +5,12 @@
 #define YLW_LED 17
 #define RED_LED 18
 
+void blinkLedTwice (int LED_PIN);
+
 void setup ()
 {
   Serial.begin(9600);
+  Serial.println("The Program is starting now");
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(GRN_LED, OUTPUT);
   pinMode(YLW_LED, OUTPUT);
@@ -16,16 +19,23 @@ void setup ()
 
 void loop ()
 {
+  blinkLedTwice(GRN_LED);
+  blinkLedTwice(RED_LED);
+}
+
+void blinkLedTwice (int LED_PIN)
+{
   Serial.println("LEDS: ON");
-  digitalWrite(LED_BUILTIN, HIGH);
-  digitalWrite(GRN_LED, HIGH);
-  digitalWrite(YLW_LED, HIGH);
-  digitalWrite(RED_LED, HIGH);
-  delay(1000);
+  digitalWrite(LED_PIN, HIGH);
+  delay(500);
   Serial.println("LEDS: OFF");
-  digitalWrite(LED_BUILTIN, LOW);
-  digitalWrite(GRN_LED, LOW);
-  digitalWrite(YLW_LED, LOW);
-  digitalWrite(RED_LED, LOW);
-  delay(1000);
+  digitalWrite(LED_PIN, LOW);
+  delay(500);
+
+  Serial.println("LEDS: ON");
+  digitalWrite(LED_PIN, HIGH);
+  delay(500);
+  Serial.println("LEDS: OFF");
+  digitalWrite(LED_PIN, LOW);
+  delay(500);
 }
